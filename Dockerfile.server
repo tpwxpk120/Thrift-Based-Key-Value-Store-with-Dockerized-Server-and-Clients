@@ -1,0 +1,15 @@
+# Use an official Java 21 runtime as the base image
+FROM openjdk:21
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the compiled classes and dependencies into the container
+COPY build/classes/java/main /app/classes
+COPY lib /app/lib
+
+# Expose the port the server will run on
+EXPOSE 12345
+
+# Command to run the server
+CMD ["java", "-cp", "/app/classes:/app/lib/*", "server.ServerApp", "12345", "Server1"]

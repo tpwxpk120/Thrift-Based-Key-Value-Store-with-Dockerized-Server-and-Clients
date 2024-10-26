@@ -1,0 +1,12 @@
+# Use an official Java 21 runtime as the base image
+FROM openjdk:21
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the compiled classes and dependencies into the container
+COPY build/classes/java/main /app/classes
+COPY lib /app/lib
+
+# Command to run the client (you can override args during runtime)
+CMD ["java", "-cp", "/app/classes:/app/lib/*", "client.ClientApp", "localhost", "12345", "Server1", "Client1"]
